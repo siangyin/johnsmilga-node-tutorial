@@ -1,8 +1,12 @@
-# my learning repo John Smilga's node-tutorial
+# 📘 my learning repo 
+
+
+## John Smilga's node-tutorial
 original links: https://github.com/john-smilga/node-express-course
 
 
 <img src="https://i.giphy.com/media/cQ23bDqzbWbh240xQq/giphy.webp" alt="learning" width="200px">
+
 
 ## Node and Express Tutorial
 
