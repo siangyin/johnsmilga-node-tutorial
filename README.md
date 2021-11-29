@@ -1,4 +1,4 @@
-# my repo learning about node and express from John Smilga's node-tutorial
+# my learning repo John Smilga's node-tutorial
 original links: https://github.com/john-smilga/node-express-course
 
 
