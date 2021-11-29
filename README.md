@@ -2,7 +2,7 @@
 original links: https://github.com/john-smilga/node-express-course
 
 
-<img src="https://media0.giphy.com/media/cQ23bDqzbWbh240xQq/giphy.gif" alt="learning" width="200px">
+<img src="https://i.giphy.com/media/cQ23bDqzbWbh240xQq/giphy.webp" alt="learning" width="200px">
 
 ## Node and Express Tutorial
 
