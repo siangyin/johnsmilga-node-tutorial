@@ -1,10 +1,12 @@
 const express = require("express")
 const app = express()
-const hello = require("./routes/tasks")
+const router = require("./routes/tasks")
 const PORT = process.env.PORT || 3000
 
-// routes
+// middlesware
+app.use(express.json())
 
-app.use("/", hello) //http://localhost:3000/hello/
+// routes
+app.use("/", router) //http://localhost:3000/hello/
 
 app.listen(PORT, () => { console.log(`Server listening on ${PORT}...`) });
