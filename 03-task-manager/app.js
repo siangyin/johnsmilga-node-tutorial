@@ -10,10 +10,13 @@ const notFound = require("./middleware/not-found")
 // middlesware
 app.use(express.static("./public"))
 app.use(express.json())
-app.use(notFound)
+
 
 // routes
-app.use("/api/v1/tasks", tasks) 
+app.use("/api/v1/tasks", tasks)
+
+// not found have to be after /api/v1/tasks
+app.use(notFound)
 
 async function start() {
  try {
