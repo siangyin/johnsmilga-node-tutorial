@@ -7,13 +7,10 @@ const connectDB = require('./db/connect')
 require("dotenv").config()
 
 // middlesware
+app.use(express.static("./public"))
 app.use(express.json())
 
 // routes
-app.get("/", (req,res) => {
- res.send("hello")
-})
-
 app.use("/api/v1/tasks", tasks) 
 
 async function start() {
