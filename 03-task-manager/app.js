@@ -4,6 +4,7 @@ const tasks = require("./routes/tasks")
 const PORT = process.env.PORT || 3000
 
 const connectDB = require('./db/connect')
+require("dotenv").config()
 
 // middlesware
 app.use(express.json())
@@ -17,10 +18,11 @@ app.use("/api/v1/tasks", tasks)
 
 async function start() {
  try {
-  await connectDB
+  await connectDB(process.env.MONGO_URL)
+  app.listen(PORT, () => { console.log(`Server listening on ${PORT}...`) });
  } catch (err) {
   console.log(err)
  }
 }
 
-app.listen(PORT, () => { console.log(`Server listening on ${PORT}...`) });
+start();
