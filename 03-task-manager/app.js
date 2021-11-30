@@ -3,7 +3,7 @@ const app = express()
 const tasks = require("./routes/tasks")
 const PORT = process.env.PORT || 3000
 
-require('./db/connect')
+const connectDB = require('./db/connect')
 
 // middlesware
 app.use(express.json())
@@ -13,6 +13,14 @@ app.get("/", (req,res) => {
  res.send("hello")
 })
 
-app.use("/api/v1/tasks", tasks) //http://localhost:3000/hello/
+app.use("/api/v1/tasks", tasks) 
+
+async function start() {
+ try {
+  await connectDB
+ } catch (err) {
+  console.log(err)
+ }
+}
 
 app.listen(PORT, () => { console.log(`Server listening on ${PORT}...`) });
