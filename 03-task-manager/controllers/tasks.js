@@ -1,3 +1,5 @@
+const Task =require("../models/task")
+
 function getAllTasks(req, res) {
  res.send("get all items here")
 }
@@ -6,8 +8,9 @@ function getTask(req, res) {
  res.json(req.params)
 }
  
-function createTask(req, res) {
- res.json(req.body)
+async function createTask(req, res) {
+ const task = await Task.create(req.body)
+ res.status(201).json({task})
 }
  
 function updateTask(req, res) {
