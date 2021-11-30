@@ -11,7 +11,7 @@ async function getTask(req, res) {
   try {
    const { id: taskID } =req.params
    const task = await Task.findOne({ _id: taskID })
-   //if cannot find the task with req.params id
+   //if cannot find the task with req.params id, but id characters the same as rest will return 404 error but if characters of id is not consistent will res 500 error
    if (!task) {
     return res.status(404).json({msg:`No task with ID ${taskID} found`})
    } 
