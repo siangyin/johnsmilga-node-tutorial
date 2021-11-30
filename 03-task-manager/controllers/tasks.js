@@ -3,7 +3,7 @@ function getAllTasks(req, res) {
 }
 
 function getTask(req, res) {
- res.send("get single task")
+ res.json(req.params)
 }
  
 function createTask(req, res) {
@@ -15,6 +15,6 @@ function updateTask(req, res) {
 }
  
 function deleteTask(req, res) {
- res.send("delete task")
+ res.json(req.params)
 }
 module.exports = {getAllTasks,getTask,createTask,updateTask,deleteTask}
