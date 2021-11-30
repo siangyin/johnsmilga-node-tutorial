@@ -7,7 +7,7 @@ function getTask(req, res) {
 }
  
 function createTask(req, res) {
- res.send("create task")
+ res.json(req.body)
 }
  
 function updateTask(req, res) {
