@@ -1,12 +1,16 @@
 const express = require("express")
 const app = express()
-const router = require("./routes/tasks")
+const tasks = require("./routes/tasks")
 const PORT = process.env.PORT || 3000
 
 // middlesware
 app.use(express.json())
 
 // routes
-app.use("/", router) //http://localhost:3000/hello/
+app.get("/", (req,res) => {
+ res.send("hello")
+})
+
+app.use("/api/v1/tasks", tasks) //http://localhost:3000/hello/
 
 app.listen(PORT, () => { console.log(`Server listening on ${PORT}...`) });

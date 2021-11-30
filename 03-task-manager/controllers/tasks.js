@@ -1,5 +1,20 @@
 function getAllTasks(req, res) {
- res.send("all items here")
+ res.send("get all items here")
+}
+
+function getTask(req, res) {
+ res.send("get single task")
 }
  
-module.exports = {getAllTasks}
+function createTask(req, res) {
+ res.send("create task")
+}
+ 
+function updateTask(req, res) {
+ res.send("update task")
+}
+ 
+function deleteTask(req, res) {
+ res.send("delete task")
+}
+module.exports = {getAllTasks,getTask,createTask,updateTask,deleteTask}
