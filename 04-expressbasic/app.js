@@ -5,15 +5,18 @@ const PORT = 3000;
 // to get the navbar-app access
 const path = require("path");
 
-// static public folder
+// setup static public folder and middleware (app.use is for middleware)
+// static asset =it's a file that server doesnt have to change it, instead of creating multiple individual path for each resources.
 app.use(express.static("./public"));
 
 // standard methods
 
-app.get("/", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
-});
 //path resolve to get the navbar-app html
+// app.get("/", (req, res) => {
+// 	res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
+// adding html to static assets (public dir)
+// SSR
+// });
 
 app.get("/about", (req, res) => {
 	res.status(200).send("about");
