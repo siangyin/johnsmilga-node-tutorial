@@ -11,14 +11,13 @@ app.get("/api/products", (req, res) => {
 	res.json(products);
 });
 
-app.get("/api/products/:id", (req, res) => {
+app.get("/api/product/:id", (req, res) => {
 	// const id = req.params.id; //{ id: '1' }
 	// or
 	const { id } = req.params;
 
-	const singleProduct = products.find((prod) => {
-		prod.id === Number(id);
-	});
+	const singleProduct = products.find((prod) => prod.id === Number(id));
+
 	if (!singleProduct) {
 		return res.status(404).send("item no exist");
 	}
