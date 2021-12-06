@@ -26,8 +26,11 @@ app.get("/api/product/:id", (req, res) => {
 
 app.get("/api/v1/query", (req, res) => {
 	const customQuery = req.query;
-
-	// e.g req url "/query?name=kk" req.query: {"name":"kk"}
+	console.log(req.query);
+ // e.g req url "/query?name=kk" 
+ // req.query: { "name": "kk" }
+	// e.g req url "/query?name=kk&search=boboooo&limit=[kk,ll,looo]"
+	//  req.query : { name: 'kk', search: 'boboooo', limit: '[kk,ll,looo]' }
 	res.json(customQuery);
 });
 
