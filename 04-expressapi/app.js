@@ -24,6 +24,13 @@ app.get("/api/product/:id", (req, res) => {
 	return res.json(products[id]);
 });
 
+app.get("/api/v1/query", (req, res) => {
+	const customQuery = req.query;
+
+	// e.g req url "/query?name=kk" req.query: {"name":"kk"}
+	res.json(customQuery);
+});
+
 app.listen(PORT, (req, res) => {
 	console.log(`running server on ${PORT}`);
 });
