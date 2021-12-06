@@ -2,16 +2,25 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+// standard methods
+
 app.get("/", (req, res) => {
-	res.send("hello");
+	res.status(200).send("homepage");
 });
 
-// standard methods
-//app.get
+app.get("/about", (req, res) => {
+	res.status(200).send("about");
+});
+
 //app.post
 //app.put
 //app.delete
-//app.all
+
+//app.all if req is other than all above
+app.all("*", (req, res) => {
+	res.status(404).send("<h1>page not found</h1>");
+});
+
 //app.use
 
 app.listen(PORT, () => {
