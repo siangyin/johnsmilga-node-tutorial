@@ -12,9 +12,17 @@ app.get("/api/products", (req, res) => {
 });
 
 app.get("/api/products/:id", (req, res) => {
-	const id = req.params.id;
-	console.log(id);
-	res.json(products[id]);
+	// const id = req.params.id; //{ id: '1' }
+	// or
+	const { id } = req.params;
+
+	const singleProduct = products.find((prod) => {
+		prod.id === Number(id);
+	});
+	if (!singleProduct) {
+		return res.status(404).send("item no exist");
+	}
+	return res.json(products[id]);
 });
 
 app.listen(PORT, (req, res) => {
