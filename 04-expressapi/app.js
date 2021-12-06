@@ -4,7 +4,11 @@ const PORT = 3000;
 const { products } = require("./data");
 
 app.get("/", (req, res) => {
-	res.json([products]);
+	res.send(`<h1>HOME</h1><a href="/api/products">API>Products</a>`);
+});
+
+app.get("/api/products", (req, res) => {
+	res.json(products);
 });
 
 app.listen(PORT, (req, res) => {
