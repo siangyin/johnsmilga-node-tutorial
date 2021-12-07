@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-const { people } = require("./data");
+let { people } = require("./data");
 
 //(middleware) static assets method to access public folder
 app.use(express.static("./methods-public"));
@@ -27,6 +27,34 @@ app.post("/api/people", (req, res) => {
 	res.status(200).json({ success: true, person: name });
 });
 
+// update data with put
+app.put("/api/people/:id", (req, res) => {
+	const { id } = req.params;
+	const { name } = req.body;
+
+	const person = people.find((person) => person.id === Number(id));
+	if (!person) {
+		return res
+			.status(404)
+			.json({ success: false, msg: `no data with id${id}` });
+	}
+
+	// or alternative
+	// if (!people[id]) {
+	// 	return res
+	// 		.status(404)
+	// 		.json({ success: false, msg: "pls provide valid id" });
+	// }
+
+	// updating data
+	const newPpl = people.map((pax) => {
+		if (pax.id === Number(id)) {
+			pax.name = name;
+		}
+		return pax;
+	});
+	res.status(200).json({ success: true, data: newPpl });
+});
 // a path where the form used to submit data eg:	<form action="/login" method="POST">
 // in order for the data from form to be pass we need to use urlencoded middleware
 app.post("/login", (req, res) => {
