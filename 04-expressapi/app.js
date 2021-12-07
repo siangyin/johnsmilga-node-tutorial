@@ -4,6 +4,9 @@ const PORT = 5000;
 const { products } = require("./data");
 
 // req => middleware (do something some functions) => res
+// 1. use. vs route
+// 2. options : our own function OR  express (eg express.static) OR third party (eg morgan)
+
 // middleware is function we can pass in the route, less repetition.
 const logger = require("./logger");
 const authorize = require("./authorize");
