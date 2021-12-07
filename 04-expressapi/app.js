@@ -7,7 +7,7 @@ const { products } = require("./data");
 // middleware is function we can pass in the route, less repetition.
 const logger = require("./logger");
 const authorize = require("./authorize");
-console.log(logger, authorize);
+// app will crashed if const {authorize} = require("./authorize");
 // if middleware to be used for any & all route, as such use app.use
 app.use([logger, authorize]);
 // app.use("/api",logger) //will apply to any path after "/api"
