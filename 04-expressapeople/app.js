@@ -10,6 +10,8 @@ app.use(express.static("./methods-public"));
 // The express.urlencoded() function is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
 // common approach using extended: false
 app.use(express.urlencoded({ extended: false }));
+
+// json so that app.post can pass back data from form. otherwise FE will not be able to fetch the data.
 app.use(express.json());
 
 app.get("/api/people", (req, res) => {
