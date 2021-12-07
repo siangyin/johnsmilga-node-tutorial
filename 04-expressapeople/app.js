@@ -10,9 +10,19 @@ app.use(express.static("./methods-public"));
 // The express.urlencoded() function is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
 // common approach using extended: false
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get("/api/people", (req, res) => {
 	res.status(200).json({ success: true, data: people });
+});
+
+// for javascript method
+app.post("/api/people", (req, res) => {
+	const { name } = req.body;
+	if (!name) {
+		return res.status(400).json({ success: false, msg: "pls provide value" });
+	}
+	res.status(200).json({ success: true, person: name });
 });
 
 // a path where the form used to submit data eg:	<form action="/login" method="POST">
