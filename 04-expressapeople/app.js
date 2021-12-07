@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-let { people } = require("./data");
+
+//require the people route
+const people = require("./routes/people");
 
 //(middleware) static assets method to access public folder
 app.use(express.static("./methods-public"));
@@ -13,6 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // json so that app.post can pass back data from form. otherwise FE will not be able to fetch the data.
 app.use(express.json());
+
+//using route
+app.use("/api/people", people);
 
 //==============================//
 
@@ -27,66 +32,6 @@ app.post("/login", (req, res) => {
 	// if (name) {
 	// 	return res.status(200).json(`welcome ${name}`);
 	// } else {res.status(401).json(`please input name`);}
-});
-
-app.get("/api/people", (req, res) => {
-	res.status(200).json({ success: true, data: people });
-});
-
-// for javascript method
-app.post("/api/people", (req, res) => {
-	const { name } = req.body;
-	if (!name) {
-		return res.status(400).json({ success: false, msg: "pls provide value" });
-	}
-	res.status(200).json({ success: true, person: name });
-});
-
-// update data with put
-app.put("/api/people/:id", (req, res) => {
-	const { id } = req.params;
-	const { name } = req.body;
-
-	const person = people.find((person) => person.id === Number(id));
-	if (!person) {
-		return res
-			.status(404)
-			.json({ success: false, msg: `no data with id${id}` });
-	}
-
-	// or alternative
-	// if (!people[id]) {
-	// 	return res
-	// 		.status(404)
-	// 		.json({ success: false, msg: "pls provide valid id" });
-	// }
-
-	// updating data
-	const newPpl = people.map((pax) => {
-		if (pax.id === Number(id)) {
-			pax.name = name;
-		}
-		return pax;
-	});
-	res.status(200).json({ success: true, data: newPpl });
-});
-
-//deleting data route
-app.delete("/api/people/:id", (req, res) => {
-	const { id } = req.params;
-
-	//if no such id 404
-	const person = people.find((person) => person.id === Number(id));
-	if (!person) {
-		return res
-			.status(404)
-			.json({ success: false, msg: `no data with id${id}` });
-	}
-
-	// if filter return is within one line dont need {} but if more than one line need {return ...}
-	const newData = people.filter((pax) => pax.id !== Number(id));
-	console.log(newData);
-	return res.status(200).json({ success: true, data: newData });
 });
 
 app.listen(PORT, (req, res) => {
