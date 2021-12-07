@@ -1,20 +1,15 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 const { products } = require("./data");
 
 // req => middleware (do something some functions) => res
 // middleware is function we can pass in the route, less repetition.
-const logger = (req, res, next) => {
-	const url = req.url;
-	console.log(`logger is here url ${url}`);
-	console.log(req.body);
-	// console.log(req.url, req.href, req.path);
-	next();
-};
-
+const logger = require("./logger");
+const authorize = require("./authorize");
+console.log(logger, authorize);
 // if middleware to be used for any & all route, as such use app.use
-app.use(logger);
+app.use([logger, authorize]);
 // app.use("/api",logger) //will apply to any path after "/api"
 
 app.get("/", (req, res) => {
