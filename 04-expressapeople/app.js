@@ -55,6 +55,25 @@ app.put("/api/people/:id", (req, res) => {
 	});
 	res.status(200).json({ success: true, data: newPpl });
 });
+
+//deleting data route
+app.delete("/api/people/:id", (req, res) => {
+	const { id } = req.params;
+
+	//if no such id 404
+	const person = people.find((person) => person.id === Number(id));
+	if (!person) {
+		return res
+			.status(404)
+			.json({ success: false, msg: `no data with id${id}` });
+	}
+
+	// if filter return is within one line dont need {} but if more than one line need {return ...}
+	const newData = people.filter((pax) => pax.id !== Number(id));
+	console.log(newData);
+	return res.status(200).json({ success: true, data: newData });
+});
+
 // a path where the form used to submit data eg:	<form action="/login" method="POST">
 // in order for the data from form to be pass we need to use urlencoded middleware
 app.post("/login", (req, res) => {
