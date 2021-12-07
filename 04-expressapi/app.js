@@ -2,7 +2,12 @@ const express = require("express");
 const app = express();
 
 // req => middleware (do something some functions) => res
-
+// middleware is function we can pass in the route, less repetition.
+const logger = (req, res, next) => {
+	const url = req.url;
+	console.log(`logger is here for ${url}`);
+	next();
+};
 const PORT = 3000;
 const { products } = require("./data");
 
@@ -10,7 +15,7 @@ app.get("/", (req, res) => {
 	res.send(`<h1>HOME</h1><a href="/api/products">API>Products</a>`);
 });
 
-app.get("/api/products", (req, res) => {
+app.get("/api/products", logger, (req, res) => {
 	res.json(products);
 });
 
