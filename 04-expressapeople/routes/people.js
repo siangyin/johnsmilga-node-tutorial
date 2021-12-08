@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 let { people } = require("../data");
 
-router.get("/", (req, res) => {
-	res.status(200).json({ success: true, data: people });
-});
+const { getPeople } = require("../controllers/people");
+
+router.get("/", getPeople);
 
 // for javascript method
 router.post("/", (req, res) => {
