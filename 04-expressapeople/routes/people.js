@@ -9,15 +9,17 @@ const {
 	updatePerson,
 } = require("../controllers/people");
 
-router.get("/", getPeople);
+// //all routes
+// router.get("/", getPeople);
+// // for javascript method
+// router.post("/", createPerson);
+// // update data with put
+// router.put("/:id", updatePerson);
+// //deleting data route
+// router.delete("/:id", deletePerson);
 
-// for javascript method
-router.post("/", createPerson);
-
-// update data with put
-router.put("/:id", updatePerson);
-
-//deleting data route
-router.delete("/:id", deletePerson);
+//alternative compile router
+router.route("/").get(getPeople).post(createPerson);
+router.route("/:id").put(updatePerson).delete(deletePerson);
 
 module.exports = router;
