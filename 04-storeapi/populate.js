@@ -18,3 +18,4 @@ const startPopulate = async () => {
 };
 
 startPopulate();
+// after these need node populate for it to run.
