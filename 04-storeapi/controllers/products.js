@@ -6,7 +6,11 @@ const getAllProductsStatic = async (req, res) => {
 };
 
 const getAllProducts = async (req, res) => {
-	res.status(200).json({ msg: "products route" });
+	// for query path is ?key=value
+	// eg http://localhost:5000/api/products?featured=false&rating=5
+	// req.query return object so can directly pass in .find(obj)
+	const products = await Product.find(req.query);
+	res.status(200).json({ products, count: products.length });
 };
 
 module.exports = { getAllProductsStatic, getAllProducts };
