@@ -7,11 +7,10 @@ const getAllProductsStatic = async (req, res) => {
 
 	//limit: to restricted returning result no.
 	//skip: to skip first few # result
-	const products = await Product.find({})
-		.sort("name price")
-		.select("name price")
-		.limit(10)
-		.skip(2);
+	const products = await Product.find({ price: { $gt: 30 } })
+		.sort("price")
+		.select("name price");
+
 	res.status(200).json({ products, count: products.length });
 };
 
@@ -20,7 +19,7 @@ const getAllProducts = async (req, res) => {
 	// eg http://localhost:5000/api/products?featured=false&rating=5
 	// req.query return object so can directly pass in .find(obj)
 
-	const { featured, company, name, sort, fields } = req.query;
+	const { featured, company, name, sort, fields, numbericFilters } = req.query;
 	const queryObj = {};
 	if (featured) {
 		queryObj.featured = featured === "true" ? true : false;
@@ -34,6 +33,38 @@ const getAllProducts = async (req, res) => {
 		queryObj.name = { $regex: name, $options: "i" };
 	}
 
+	//______ numbericFilters ______//
+	// products?numbericFilters=price>40,rating>=4
+	// return : price>40,rating>=4
+	if (numbericFilters) {
+		//converting the query to mongoose readable operator
+		const operatorMap = {
+			">": "$gt",
+			">=": "$gte",
+			"=": "$eq",
+			"<": "$lt",
+			"<=": "$lte",
+		};
+		// converting the query to match with moogoose operator (if match: swap the value)
+		// db.inventory.find( { qty: { $gte: 20 } } )
+		const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+		let filters = numbericFilters.replace(
+			regEx,
+			(match) => `-${operatorMap[match]}-`
+		);
+		// eg: filters: price-$gt-40,rating-$gte-4
+
+		// only allowing filters of Number value
+		const options = ["price", "rating"];
+		filters = filters.split(",").forEach((item) => {
+			const [field, operator, value] = item.split("-");
+			if (options.includes(field)) {
+				// eg: queryObj : { price: { '$gt': 40 }, rating: { '$gte': 4 } }
+				queryObj[field] = { [operator]: Number(value) };
+			}
+		});
+	}
+	
 	let result = Product.find(queryObj);
 
 	//______ sort ______//
