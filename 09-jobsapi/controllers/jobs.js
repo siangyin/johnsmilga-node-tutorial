@@ -11,7 +11,8 @@ const getJob = async (req, res) => {
 };
 
 const createJob = async (req, res) => {
-	// req.body.createdBy = req.user.userId;
+	// req.user.userId is from the UserSchema.methods.createJWT function that return jwt payload obj { userId: this._id, name: this.name } so the token & key must matched.
+	req.body.createdBy = req.user.userId;
 	const job = await Job.create(req.body);
 	console.log(req.body);
 	res.status(StatusCodes.CREATED).json({ job });
