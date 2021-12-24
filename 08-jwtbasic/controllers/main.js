@@ -31,11 +31,17 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-  console.log(req.headers)
+	const authHeader = req.headers.authorization;
+	const token = authHeader.split(" ")[1];
+
+	// check if headers Authorization exist or does is start with bearer
+	if (!authHeader || !authHeader.startsWith("Bearer")) {
+		throw new CustomAPIError("no token provided", 401);
+	}
 	const luckyNum = Math.floor(Math.random() * 100);
 	res
 		.status(200)
-		.send({ msg: `hello john`, secret: `here is ur auth data ${luckyNum}` });
+		.send({ msg: `hello john`, secret: `here is ur auth data ${token}` });
 };
 
 module.exports = { login, dashboard };
