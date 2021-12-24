@@ -31,6 +31,7 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
+  console.log(req.headers)
 	const luckyNum = Math.floor(Math.random() * 100);
 	res
 		.status(200)
