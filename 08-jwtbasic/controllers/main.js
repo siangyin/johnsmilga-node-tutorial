@@ -8,14 +8,14 @@ const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
 	const { username, password } = req.body;
-	console.log(username, password);
+	// console.log(username, password);
 
 	// mongoose validation
 	// Joi
 	// check in the controller
 
 	if (!username || !password) {
-		res.status(400).json({ msg: "Please provide email and password" });
+		return res.status(400).json({ msg: "Please provide email and password" });
 		// throw new CustomAPIError("Please provide email and password", 400);
 	}
 
