@@ -30,6 +30,7 @@ UserSchema.pre("save", async function () {
 	this.password = await bcrypt.hash(this.password, salt);
 });
 
+//create jwt function in UserSchema
 UserSchema.methods.createJWT = function () {
 	// jwt
 	return jwt.sign(
@@ -40,5 +41,12 @@ UserSchema.methods.createJWT = function () {
 		}
 	);
 };
+
+//comparing passwords function in UserSchema
+UserSchema.methods.comparePassword = async function (canditatePassword) {
+	const isMatch = await bcrypt.compare(canditatePassword, this.password);
+	return isMatch;
+};
+
 
 module.exports = mongoose.model("User", UserSchema);

@@ -31,13 +31,20 @@ const login = async (req, res) => {
 		throw new BadRequestError("Please provide email and password");
 	}
 
+	// checking if user exist:
 	const user = await User.findOne({ email });
-	// comparing password
+
 	if (!user) {
 		throw new UnauthenticatedError("Invalid credentials");
 	}
 
-	// if user exist
+	// if user exist, comparing passwords input vs db
+	const isPasswordCorrect = await user.comparePassword(password);
+	if (!isPasswordCorrect) {
+		throw new UnauthenticatedError("Invalid Credentials");
+	}
+
+	// if user exist, create jwt:
 	const token = user.createJWT();
 	res.status(StatusCodes.OK).json({
 		msg: `User ${user.name} logged-in`,
