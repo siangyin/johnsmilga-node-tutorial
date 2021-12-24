@@ -32,30 +32,13 @@ const login = async (req, res) => {
 };
 
 const dashboard = async (req, res) => {
-	const authHeader = req.headers.authorization;
-
-	// check if headers Authorization exist or does is start with bearer
-	if (!authHeader || !authHeader.startsWith("Bearer")) {
-		res.status(401).json({ msg: "no token provided" });
-		// throw new CustomAPIError("no token provided", 401);
-	}
-
-	const token = authHeader.split(" ")[1];
-
-	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-		const luckyNum = Math.floor(Math.random() * 100);
-		res
-			.status(200)
-			.send({
-				msg: `hello ${decoded.username}`,
-				secret: `here is ur auth data ${token}`,
-			});
-	} catch (err) {
-		res.status(401).json({ msg: "no authorised to acces this route" });
-		// throw new CustomAPIError("no authorised to acces this route", 401);
-	}
+	console.log(req.user)
+const luckyNum = Math.floor(Math.random() * 100);
+res.status(200).send({
+	msg: `hello ${req.user.username}`,
+	secret: `here is ur auth data ${luckyNum}`,
+});
+	
 };
 
 module.exports = { login, dashboard };
