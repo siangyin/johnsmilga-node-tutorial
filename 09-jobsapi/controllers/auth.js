@@ -20,6 +20,7 @@ const register = async (req, res) => {
 	res.status(StatusCodes.CREATED).json({
 		msg: `register user ${user.name}`,
 		data: user,
+		user: { name: user.name },
 		token: token,
 	});
 };
@@ -48,6 +49,7 @@ const login = async (req, res) => {
 	const token = user.createJWT();
 	res.status(StatusCodes.OK).json({
 		msg: `User ${user.name} logged-in`,
+		user: { name: user.name },
 		data: user,
 		token: token,
 	});
