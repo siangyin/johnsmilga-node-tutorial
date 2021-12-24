@@ -18,7 +18,8 @@ const deleteJob = async (req, res) => {
 	res.status(200).json({ msg: `deleteJob` });
 };
 module.exports = {
-	getAllJobs,
+  getAllJobs,
+  getJob,
 	createJob,
 	updateJob,
 	deleteJob,
