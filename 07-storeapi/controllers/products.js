@@ -64,7 +64,7 @@ const getAllProducts = async (req, res) => {
 			}
 		});
 	}
-	
+
 	let result = Product.find(queryObj);
 
 	//______ sort ______//
@@ -76,6 +76,7 @@ const getAllProducts = async (req, res) => {
 	}
 
 	//______ field ______//
+	//returning only selected fileds in the list
 
 	if (fields) {
 		const selectList = fields.split(",").join(" ");
