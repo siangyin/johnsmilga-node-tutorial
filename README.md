@@ -10,12 +10,12 @@ original links: https://github.com/john-smilga/node-express-course
 
 ## 📖 List of Node and Express Learning
 
-✅ Node Tutorial
-✅ Express Tutorial
-✅ Task Manager (MongoDB, Mongoose)
-✅ Store API
-✅ JWT Basics
-✅ Jobs API: https://siangyin-jobsapi.herokuapp.com/
+- ✅ Node Tutorial
+- ✅ Express Tutorial
+- ✅ Task Manager (MongoDB, Mongoose)
+- ✅ Store API
+- ✅ JWT Basics
+- ✅ Jobs API: https://siangyin-jobsapi.herokuapp.com/
 
 #### Course Exclusive
 
