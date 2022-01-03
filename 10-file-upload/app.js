@@ -4,6 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
+const fileUpload = require("express-fileupload");
 // database
 const connectDB = require("./db/connect");
 
@@ -14,16 +15,19 @@ const productRouter = require("./routes/productRoutes");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-// middleware so that we have access to req.body 
-app.use(express.json())
+// make it publicly available
+app.use(express.static("./public"));
+// middleware so that we have access to req.body
+app.use(express.json());
+//to be able to upload img
+app.use(fileUpload());
 
 app.get("/", (req, res) => {
 	res.send("<h1>File Upload Starter</h1>");
 });
 
-// invoke 
-app.use("api/v1/products",productRouter) 
-
+// invoke
+app.use("/api/v1/products", productRouter);
 
 // middleware
 app.use(notFoundMiddleware);
@@ -34,7 +38,6 @@ const port = process.env.PORT || 3000;
 const start = async () => {
 	try {
 		await connectDB(process.env.MONGO_URI);
-
 		app.listen(port, () =>
 			console.log(`Server is listening on port ${port}...`)
 		);
