@@ -1,6 +1,6 @@
 const path = require("path");
 
-const { StatusCode } = require("http-status-codes");
+const { StatusCodes } = require("http-status-codes");
 
 const uploadProductImage = async (req, res) => {
 	let productImage = req.files.image;
@@ -11,7 +11,7 @@ const uploadProductImage = async (req, res) => {
 
 	await productImage.mv(imgPath);
 	res
-		.status(StatusCode.OK)
+		.status(StatusCodes.OK)
 		.json({ image: { src: `/uploads/${productImage.name}` } });
 };
 
