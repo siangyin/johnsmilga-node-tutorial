@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 5000;
 const connectDB = require("./db/connect");
 const morgan = require("morgan");
 
+// routers
+const authRouter = require("./routes/authRoutes");
+
 //middleware
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -16,6 +19,7 @@ app.get("/", (req, res) => {
 	res.send("Hello");
 });
 
+app.use("/api/v1/auth", authRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
