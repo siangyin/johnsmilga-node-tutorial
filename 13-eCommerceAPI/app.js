@@ -13,7 +13,7 @@ const authRouter = require("./routes/authRoutes");
 //middleware
 app.use(morgan("tiny"));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser(process.env.JWT_SECRET));
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
@@ -22,7 +22,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/v1", (req, res) => {
-	console.log(req.cookies);
+	// console.log(req.cookies);
+	console.log(req.signedCookies);
+
 	res.send("e-commerce api");
 });
 
