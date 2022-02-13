@@ -23,7 +23,7 @@ const agg = [
 ];
 
 MongoClient.connect(
-	"mongodb+srv://admin:11223344@cluster0.ud1ul.mongodb.net/test?authSource=admin&replicaSet=atlas-9hjpd6-shard-0&readPreference=primary&appname=MongoDB+Compass&ssl=true",
+	"MONGO_URL",
 	{ useNewUrlParser: true, useUnifiedTopology: true },
 	function (connectErr, client) {
 		assert.equal(null, connectErr);
