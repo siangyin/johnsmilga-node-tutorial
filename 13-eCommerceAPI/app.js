@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 5000;
 const connectDB = require("./db/connect");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 
 // routers
 const authRouter = require("./routes/authRoutes");
@@ -28,6 +29,9 @@ app.get("/api/v1", (req, res) => {
 
 	res.send("e-commerce api");
 });
+
+app.use(express.static("./public"));
+app.use(fileUpload());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
