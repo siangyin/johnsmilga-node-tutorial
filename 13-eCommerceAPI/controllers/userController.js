@@ -45,7 +45,7 @@ const showCurrentUser = async (req, res) => {
 // 	res.status(StatusCodes.OK).json({ user: tokenUser });
 // };
 
-// update user with user.save
+// update user with user.save (will trigger pre.save)
 const updateUser = async (req, res) => {
 	const { email, name } = req.body;
 	console.log(req.user);
