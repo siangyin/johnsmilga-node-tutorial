@@ -47,14 +47,13 @@ const verifyEmail = async (req, res) => {
 		throw new CustomError.UnauthenticatedError("Verification Failed");
 	}
 
-	// (user.isVerified = true), (user.verified = Date.now());
-	// user.verificationToken = "";
+	user.isVerified = true;
+	user.verified = Date.now();
+	user.verificationToken = "";
 
-	// await user.save();
+	await user.save();
 
-	res
-		.status(StatusCodes.OK)
-		.json({ msg: "Email Verified", verificationToken, email });
+	res.status(StatusCodes.OK).json({ msg: `Email ${email} Verified` });
 };
 
 const login = async (req, res) => {
