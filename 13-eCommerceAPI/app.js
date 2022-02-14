@@ -33,7 +33,7 @@ app.use(cors());
 app.use(xss());
 app.use(mongoSanitize());
 
-app.use(morgan("tiny"));
+// app.use(morgan("tiny")); // production only
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 const notFoundMiddleware = require("./middleware/not-found");
@@ -44,12 +44,11 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 // 	res.send("Hello");
 // });
 
-app.get("/api/v1", (req, res) => {
-	// console.log(req.cookies);
-	console.log(req.signedCookies);
-
-	res.send("e-commerce api");
-});
+// app.get("/api/v1", (req, res) => {
+// 	// console.log(req.cookies);
+// 	console.log(req.signedCookies);
+// 	res.send("e-commerce api");
+// });
 
 app.use(express.static("./public"));
 app.use(fileUpload());
