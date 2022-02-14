@@ -24,7 +24,7 @@ original links: https://github.com/john-smilga/node-express-course
 - ✅ File Upload (local and cloudinary)
 - ✅ Send Email (nodemailer,ethereal and sendgrid )
 - ✅ Stripe Payment
-10. E-Commerce API
+- ✅ E-Commerce API : https://be08-ecommerce-api.herokuapp.com/
 11. Auth Workflow (verify email, reset password)
 12. Sessions
 13. Yelp Clone
