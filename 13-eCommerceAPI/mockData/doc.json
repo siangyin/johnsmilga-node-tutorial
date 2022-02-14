@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "d2f465ff-c92b-4a33-8629-e88254cc72fd",
+		"name": "08-eCommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Logout user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/logout",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["auth", "logout"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"email\":\"siangyin916@gmail.com\",\n    \"password\":\"siangyin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/login",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["auth", "login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"yippee\",\n    \"email\":\"yippee_oooo@hotmail.com\",\n    \"password\":\"yippee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/register",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["auth", "register"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get ALL Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["users"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SGL User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/62066f2f4aec9a9d9952b455",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["users", "62066f2f4aec9a9d9952b455"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show CURRent user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/showme",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["users", "showme"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"email\":\"yippee_oooo@hotmail.com\",\n    \"name\":\"yippeeyaya\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/updateuser",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["users", "updateuser"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\":\"yippee\",\n    \"oldPassword\":\"yippee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/updateUserPassword",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["users", "updateUserPassword"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \n    \"name\": \"emperor bed\",\n    \"price\": 23999,\n    \"image\": \"https://dl.airtable.com/.attachmentThumbnails/0446e84c5bca9643de3452a61b2d6195/1b32f48b\",\n    \"colors\": [\"#0000ff\", \"#000\"],\n    \"company\": \"ikea\",\n    \"description\": \"Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge\",\n    \"category\": \"bedroom\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/6208fa41c773056fe62c7e60",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products", "6208fa41c773056fe62c7e60"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"new nameee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/62092409d83854e8dd24ebc0",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products", "62092409d83854e8dd24ebc0"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/6208fa41c773056fe62c7e60",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products", "6208fa41c773056fe62c7e60"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/siangyin/Documents/GitHub/node-express-course/10-e-commerce-api/final/public/uploads/couch.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/uploadImage",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products", "uploadImage"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product's Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/62092409d83854e8dd24ebc0/reviews",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["products", "62092409d83854e8dd24ebc0", "reviews"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\":\"62092409d83854e8dd24ebc0\",\n    \"rating\":5,\n    \"title\":\"sad\",\n    \"comment\":\"no good sob\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["reviews"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["reviews"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/62090cf93eb908476d275cd3",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["reviews", "62090cf93eb908476d275cd3"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"rating\":1,\n    \"title\":\"sad\",\n    \"comment\":\"nono\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/6209266c7ec50c0c1e8fdfda",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["reviews", "6209266c7ec50c0c1e8fdfda"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/620925a67ec50c0c1e8fdfd2",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["reviews", "620925a67ec50c0c1e8fdfd2"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tax\": 499,\n    \"shippingFee\": 799,\n    \"items\": [\n      {\n        \"name\": \"bed\",\n        \"price\": 2699,\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\n        \"amount\": 3,\n        \"product\": \"62093ce0c55293ad241ca446\"\n      },\n      {\n        \"name\": \"chair\",\n        \"price\": 2999,\n        \"image\": \"https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160\",\n        \"amount\": 2,\n        \"product\": \"62093cc4c55293ad241ca440\"\n      }\n    ]\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/orders",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["orders"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ALL Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/orders",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["orders"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/orders/62090cf93eb908476d275cd3",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["orders", "62090cf93eb908476d275cd3"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/orders/showAllMyOrders",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["orders", "showAllMyOrders"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"rating\":1,\n    \"title\":\"sad\",\n    \"comment\":\"nono\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/orders/6209266c7ec50c0c1e8fdfda",
+							"host": ["http://localhost:5000/api/v1"],
+							"path": ["orders", "6209266c7ec50c0c1e8fdfda"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000/api/v1"
+		}
+	]
+}
