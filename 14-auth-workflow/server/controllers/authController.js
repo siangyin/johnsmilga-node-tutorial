@@ -47,7 +47,13 @@ const login = async (req, res) => {
 	const isPasswordCorrect = await user.comparePassword(password);
 	if (!isPasswordCorrect) {
 		throw new CustomError.UnauthenticatedError("Invalid Credentials");
+  }
+  
+	if (!user.isVerified) {
+		throw new CustomError.UnauthenticatedError("Please verify your email");
 	}
+
+
 	const tokenUser = createTokenUser(user);
 	attachCookiesToResponse({ res, user: tokenUser });
 
