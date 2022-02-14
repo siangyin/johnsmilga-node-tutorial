@@ -7,6 +7,11 @@ const connectDB = require("./db/connect");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+const rateLimiter = require("express-rate-limit");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const cors = require("cors");
+const mongoSanitize = require("express-mongo-sanitize");
 
 // routers
 const authRouter = require("./routes/authRoutes");
@@ -16,15 +21,28 @@ const reviewRouter = require("./routes/reviewRoutes");
 const orderRouter = require("./routes/orderRoutes");
 
 //middleware
+app.set("trust proxy", 1);
+app.use(
+	rateLimiter({
+		windowMs: 15 * 60 * 1000, // 15min
+		max: 60,
+	})
+);
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
+
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-app.get("/", (req, res) => {
-	res.send("Hello");
-});
+// landing page will is the doc (in public: html of API doc)
+// app.get("/", (req, res) => {
+// 	res.send("Hello");
+// });
 
 app.get("/api/v1", (req, res) => {
 	// console.log(req.cookies);
