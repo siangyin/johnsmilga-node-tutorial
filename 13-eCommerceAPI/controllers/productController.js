@@ -4,6 +4,7 @@ const CustomError = require("../errors");
 const path = require("path");
 
 const createProduct = async (req, res) => {
+	console.log(req.user);
 	console.log(req.body);
 	req.body.user = req.user.userID;
 	console.log(req.user);
